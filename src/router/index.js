@@ -1,20 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Pages from "@/pages";
-import Cards from "./modules/oldRoutes/cards";
-import oldRoutes from "./modules/oldRoutes/oldRoutes";
-import WarehouseCards from "./modules/warehouse/cards";
-import FixedCards from "./modules/fixedAssets/cards";
-import ToolCards from "./modules/tools/cards";
-import Product from "./modules/oldRoutes/product";
-import Currency from "./modules/oldRoutes/currency";
-import Invoice from "./modules/oldRoutes/invoice";
-import login from "@/pages/oldPages/auth";
+
+import login from "@/pages/auth";
 
 Vue.use(VueRouter);
 const mainRouteChildren = [
   {
-
     path: "/404error",
     name: "404Error",
     components: {
@@ -23,29 +15,25 @@ const mainRouteChildren = [
     },
   },
   {
-
-    path: "/testing",
-    name: "testing",
+    path: "/example",
+    name: "example",
     components: {
       default: Pages,
-      pageContent: () => import("@/pages/testing.vue"),
+      pageContent: () => import("@/pages/example/index.vue"),
+    },
+  },
+  {
+    path: "/example/create",
+    name: "add_example",
+    components: {
+      default: Pages,
+      pageContent: () => import("@/pages/example/create.vue"),
     },
   },
 ];
 
 let allRoutes = [];
-var routesConcat = allRoutes.concat(
-  WarehouseCards,
-  FixedCards,
-  ToolCards,
-  mainRouteChildren,
-
-  Cards,
-  oldRoutes,
-  Product,
-  Currency,
-  Invoice
-);
+var routesConcat = allRoutes.concat(mainRouteChildren);
 
 const routes = [
   { path: "/login", component: login, name: "login" },
